@@ -1,0 +1,38 @@
+<script>
+async function loadNames() {
+  const response = await fetch('https://api.thecatapi.com/v1/images/search');
+  const names = await response.json();
+  //console.log(names); 
+var id;
+var urk;
+var width;
+var height;
+var catimage ;
+var container_block ;
+  for (var key in names) {
+   if (names.hasOwnProperty(key)) {
+    var id = names[key].id;
+    var url = names[key].url;
+    var width = names[key].width;
+    var height = names[key].height;
+   }
+  
+console.log("id:" + " "  + id + " " + "url:" + " " + url + " " + "width:" + " " + width + " " + "height:" + " " +height);
+
+catimage = document.createElement( 'div' );
+catimage.innerHTML = '<img src=' + url + ' ' + 'alt=' + id + '>' ;
+container_block = document.getElementById( 'democontainer' );
+container_block.appendChild( catimage );
+  }
+}
+loadNames();
+</script>
+<head>
+<body>
+  <div id="democontainer">
+    <p>
+    Loading new cats..
+    </p>
+    </div>
+</body>
+</head>
